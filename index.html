@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Task UI</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>AI Task UI</h1>
+    <p class="muted">Single-route client for Q&amp;A • Latest • Image • Content</p>
+  </header>
+
+  <section class="panel">
+    <label for="apiBase">API Base URL</label>
+    <div class="row">
+      <input id="apiBase" type="url" value="https://ai-task-api.onrender.com" />
+      <button id="pingBtn" class="secondary">Ping</button>
+    </div>
+    <p id="pingMsg" class="muted"></p>
+  </section>
+
+  <section class="panel">
+    <form id="taskForm">
+      <div class="grid">
+        <div class="col">
+          <label for="task">Task</label>
+          <select id="task" required>
+            <option value="qa">qa (Q&amp;A)</option>
+            <option value="content">content (platform copy)</option>
+            <option value="image">image (URL + Base64)</option>
+            <option value="latest_answer">latest_answer</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="userId">user_id</label>
+          <input id="userId" type="text" placeholder="demo" />
+        </div>
+        <div class="col only-qa">
+          <label for="useMcp">use_mcp</label>
+          <input id="useMcp" type="checkbox" />
+        </div>
+      </div>
+
+      <div class="only-has-prompt">
+        <label for="prompt">prompt</label>
+        <textarea id="prompt" rows="4" placeholder="Type your prompt..."></textarea>
+      </div>
+
+      <div class="grid only-content">
+        <div class="col">
+          <label for="platform">platform</label>
+          <select id="platform">
+            <option>linkedin</option>
+            <option>twitter</option>
+            <option>facebook</option>
+            <option>instagram</option>
+            <option>tiktok</option>
+            <option>youtube</option>
+            <option>generic</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid only-image">
+        <div class="col">
+          <label for="imgSize">image_size</label>
+          <input id="imgSize" type="text" value="1024x1024" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="submitBtn" type="submit">Send</button>
+        <span id="status" class="muted"></span>
+      </div>
+    </form>
+  </section>
+
+  <section id="result" class="panel hidden">
+    <h2>Result</h2>
+    <div id="textResult" class="hidden"></div>
+
+    <div id="qaSources" class="hidden">
+      <h3>Sources</h3>
+      <ul id="sourcesList"></ul>
+    </div>
+
+    <div id="imageBox" class="hidden">
+      <h3>Image</h3>
+      <p class="muted">URL: <a id="imageLink" href="#" target="_blank" rel="noopener"></a></p>
+      <div id="imageFrame">
+        <img id="imageEl" alt="Generated image" />
+      </div>
+    </div>
+
+    <details id="rawBox">
+      <summary>Raw JSON</summary>
+      <pre id="rawJson"></pre>
+    </details>
+  </section>
+
+  <footer class="muted">
+    <p>Frontend: static HTML/CSS/JS • Works on GitHub Pages • CORS enabled by the API</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
