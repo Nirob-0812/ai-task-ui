@@ -7,7 +7,18 @@ A lightweight **HTML/CSS/JS** frontend for the *AI Task API*. It works on any st
 - Press **Send** → see the **answer** or **image** inline, with **sources** and **raw JSON**
 - API base defaults to your live URL: `https://ai-task-api.onrender.com`
 
+
+**AI Task API:** — FastAPI + MCP (Single Route)
 ---
+
+A FastAPI service with **one endpoint** that performs four AI tasks:
+
+- `qa` — Agent-based Q&A (calls MCP `search_web`, then LLM)
+- `latest_answer` — Return the most recent saved answer per `user_id`
+- `image` — Generate an image from a prompt (**returns URL + Base64**)
+- `content` — Generate platform-tailored copy (LinkedIn/Twitter/Facebook/etc.)
+- API Repo URL: `https://github.com/Nirob-0812/ai-task-api`
+
 
 ## Features
 - **Single page** UI, no build tools
